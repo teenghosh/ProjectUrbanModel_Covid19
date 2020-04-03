@@ -12,6 +12,10 @@ public class UserDetailsBeanImpl implements UserDetails {
 
 	private UserEntity user;
 	
+	private String role;
+	
+	private String name;
+	
 	public UserDetailsBeanImpl(UserEntity user) {
 		this.user=user;
 	}
@@ -22,8 +26,15 @@ public class UserDetailsBeanImpl implements UserDetails {
 
 	
 	public String getRole(){
-		return user.getRole();
+		this.role = user.getRole() ;
+		return this.role;
 	}
+	
+	public String getName(){
+		this.name = user.getName() ;
+		return this.name;
+	}
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		

@@ -1,9 +1,11 @@
 package com.garage48.covid19.projecturban.pojo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,6 +13,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(name="authtable")
 public class UserEntity{
 
 
@@ -24,18 +27,28 @@ public class UserEntity{
 	}*/
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
+    private long id;
 	
+	@Column(name="role")
 	private String role;
 	
+	@Column(name="password")
 	private String password;
+	@Column(name="username")
 	private  String username;
 	//private final Set<GrantedAuthority> authorities;
+	@Column(name="accountNonExpired")
 	private  boolean accountNonExpired;
+	@Column(name="accountNonLocked")
 	private  boolean accountNonLocked;
+	@Column(name="credentialsNonExpired")
 	private  boolean credentialsNonExpired;
+	@Column(name="enabled")
 	private  boolean enabled;
+	@Column(name="name")
+	private String name;
 	
 	/**
 	 * 

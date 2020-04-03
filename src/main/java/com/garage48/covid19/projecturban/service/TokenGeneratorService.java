@@ -25,10 +25,10 @@ public class TokenGeneratorService implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Value("${jwt.util.secretkey}")
-	private static String secretkey;
+	private  String secretkey;
 	
 	@Value("${jwt.util.tokenvalidity}")
-	public static String token_validity;
+	public  String token_validity;
 	
 	//retrieve username from jwt token
 	public String getUsernameFromToken(String token) {
