@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.garage48.covid19.projecturban.service.TokenGeneratorService;
 import com.garage48.covid19.projecturban.service.UserDetailServiceImpl;
+import com.garage48.covid19.projecturban.service.UserDetailsBeanImpl;
 
 import io.jsonwebtoken.ExpiredJwtException;
 
@@ -51,7 +51,7 @@ public class WebtokenFilter extends OncePerRequestFilter {
 		}
 		// Once we get the token validate it.
 		if (Objects.nonNull(username) && Objects.isNull(SecurityContextHolder.getContext().getAuthentication())) {
-			UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+			UserDetailsBeanImpl userDetails = this.userDetailsService.loadUserByUsername(username);
 			// if token is valid configure Spring Security to manually set
 			// authentication
 			if (tokenGen.validateToken(jwtToken, userDetails)) {

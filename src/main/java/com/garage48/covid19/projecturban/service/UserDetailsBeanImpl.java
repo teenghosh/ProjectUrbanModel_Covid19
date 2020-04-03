@@ -7,17 +7,22 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.garage48.covid19.projecturban.pojo.UserEntity;
 
+import lombok.Getter;
+
 
 public class UserDetailsBeanImpl implements UserDetails {
 
 	private UserEntity user;
 	
+	
 	private String role;
 	
 	private String name;
-	
+
 	public UserDetailsBeanImpl(UserEntity user) {
 		this.user=user;
+		this.name = user.getName();
+		this.role =user.getRole();
 	}
 	/**
 	 * 
@@ -26,12 +31,10 @@ public class UserDetailsBeanImpl implements UserDetails {
 
 	
 	public String getRole(){
-		this.role = user.getRole() ;
 		return this.role;
 	}
 	
 	public String getName(){
-		this.name = user.getName() ;
 		return this.name;
 	}
 	
@@ -43,38 +46,38 @@ public class UserDetailsBeanImpl implements UserDetails {
 
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
-		return user.getPassword();
+		
+		return this.user.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
-		return user.getPassword();
+		
+		return this.user.getUsername();
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return user.isAccountNonExpired();
+		
+		return this.user.isAccountNonExpired();
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return user.isAccountNonLocked();
+		
+		return this.user.isAccountNonLocked();
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return user.isCredentialsNonExpired();
+		
+		return this.user.isCredentialsNonExpired();
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return user.isEnabled();
+		
+		return this.user.isEnabled();
 	}
 
 	

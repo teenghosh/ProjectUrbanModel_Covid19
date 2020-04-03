@@ -36,7 +36,8 @@ public class UserEntity{
 	
 	@Column(name="password")
 	private String password;
-	@Column(name="username")
+	
+	@Column(name="username",unique=true,nullable = false)
 	private  String username;
 	//private final Set<GrantedAuthority> authorities;
 	@Column(name="accountNonExpired")
