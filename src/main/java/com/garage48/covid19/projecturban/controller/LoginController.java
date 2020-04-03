@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.garage48.covid19.projecturban.pojo.AuthenticationRequest;
 import com.garage48.covid19.projecturban.pojo.AuthenticationResponse;
 import com.garage48.covid19.projecturban.pojo.SignupRequest;
+import com.garage48.covid19.projecturban.pojo.UIresponseStructure;
 import com.garage48.covid19.projecturban.pojo.UserEntity;
 import com.garage48.covid19.projecturban.service.TokenGeneratorService;
 import com.garage48.covid19.projecturban.service.UserDetailServiceImpl;
@@ -38,7 +39,7 @@ public class LoginController {
 	private PasswordEncoder encoder;
 
 	@PostMapping(value = "/public/authenticate")
-	public ResponseEntity<AuthenticationResponse> createAuthenticationToken(
+	public ResponseEntity<UIresponseStructure<AuthenticationResponse>> createAuthenticationToken(
 			@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
 
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
@@ -46,7 +47,7 @@ public class LoginController {
 
 		final String token = tokenGenerator.generateToken(userDetails);
 
-		return new ResponseEntity<AuthenticationResponse>( new AuthenticationResponse(token,userDetails.getName(),userDetails.getUsername()), HttpStatus.OK);
+		return new ResponseEntity<UIresponseStructure<AuthenticationResponse>>( new UIresponseStructure<>(new AuthenticationResponse(token,userDetails.getName(),userDetails.getUsername())), HttpStatus.OK);
 	}
 
 	private void authenticate(String username, String password) throws Exception {
@@ -64,7 +65,7 @@ public class LoginController {
 	}
 	
 	@PostMapping(value = "/public/newuser")
-	public ResponseEntity<AuthenticationResponse> createAuthenticationToken(
+	public ResponseEntity<UIresponseStructure<AuthenticationResponse>> createAuthenticationToken(
 			@RequestBody SignupRequest user) throws Exception {
 
 		UserEntity userToSave = new UserEntity();
@@ -73,7 +74,7 @@ public class LoginController {
 
 		final String token = tokenGenerator.generateToken(userDetails);
 
-		return new ResponseEntity<AuthenticationResponse>(new AuthenticationResponse(token,userDetails.getName(),userDetails.getUsername()), HttpStatus.OK);
+		return new ResponseEntity<UIresponseStructure<AuthenticationResponse>>( new UIresponseStructure<>(new AuthenticationResponse(token,userDetails.getName(),userDetails.getUsername())), HttpStatus.OK);
 	}
 	
 	private void  populateUserEntity(UserEntity userToSave,SignupRequest user) {
