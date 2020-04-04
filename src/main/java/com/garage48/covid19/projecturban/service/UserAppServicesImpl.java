@@ -6,14 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.garage48.covid19.projecturban.dao.UserAddressDao;
+import com.garage48.covid19.projecturban.dao.UserOrderDetailsDao;
 import com.garage48.covid19.projecturban.pojo.AddressEntity;
+import com.garage48.covid19.projecturban.pojo.OrderDetailsEntity;
 
 @Service
 public class UserAppServicesImpl implements UserAppServices {
 
-	private static final Log logger = LogFactory.getLog(UserDetailServiceImpl.class);
+	private static final Log logger = LogFactory.getLog(UserAppServicesImpl.class);
 	@Autowired
 	private UserAddressDao addressDao;
+	@Autowired
+	UserOrderDetailsDao  userOrderDao;
 	
 	@Override
 	public boolean saveUserAddress(AddressEntity address) throws Exception {
@@ -27,4 +31,21 @@ public class UserAppServicesImpl implements UserAppServices {
 		return true;
 	}
 
+	/**
+	 * @param orders
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public OrderDetailsEntity saveUserOrderDetails(OrderDetailsEntity orders) throws Exception {
+
+		try {
+			return userOrderDao.save(orders);
+		}
+		catch (Exception e) {
+			logger.error("Exception occurred while fetching usernsame");
+			throw new Exception("Error occurred during saving user credentials");
+		}
+
+	}
 }

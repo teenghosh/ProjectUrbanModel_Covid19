@@ -1,0 +1,15 @@
+package com.garage48.covid19.projecturban;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@Configuration
+public class ApplicationConfiguration {
+
+	@Bean
+	public ObjectMapper getMapper() {
+		return new ObjectMapper();
+	}
+}
