@@ -22,28 +22,28 @@ public class AddressEntity implements Serializable{
 	private static final long serialVersionUID = -225968075984718408L;
 
 	@Id
-	@Column(name="username")
+	@Column(name="username",unique=true)
 	private String username;
 	
-	@Column(name="ward")
+	@Column(name="ward",updatable=true)
 	private String ward;
 	
-	@Column(name="street")
+	@Column(name="street",updatable=true)
 	private String street;
 	
-	@Column(name="municipalityArea")
+	@Column(name="municipalityArea",updatable=true)
 	private String municipalityArea;
 	
-	@Column(name="policeStation")
+	@Column(name="policeStation",updatable=true)
 	private String policeStation;
 	
-	@Column(name="pincode")
+	@Column(name="pincode",updatable=true)
 	private String pincode;
 	
-	@Column(name="district")
+	@Column(name="district",updatable=true)
 	private String district;
 	
-	@Column(name="state")
+	@Column(name="state",updatable=true)
 	private String state;
 	
 	

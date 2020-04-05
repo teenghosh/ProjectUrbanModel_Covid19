@@ -75,4 +75,3 @@ public class TokenGeneratorService implements Serializable {
 	}
 
 }
-// new Date(System.currentTimeMillis() + Long.valueOf(token_validity) * 1000)
